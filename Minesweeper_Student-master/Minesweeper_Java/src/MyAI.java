@@ -20,6 +20,14 @@ package src;
 import src.Action.ACTION;
 
 public class MyAI extends AI {
+	
+	int rowDimension;
+	int colDimension;
+	int totalMines;
+	int startX;
+	int startY;
+	
+	
 	// ########################## INSTRUCTIONS ##########################
 	// 1) The Minesweeper Shell will pass in the board size, number of mines
 	// 	  and first move coordinates to your agent. Create any instance variables
@@ -37,16 +45,30 @@ public class MyAI extends AI {
 	// This line is to remove compiler warnings related to using Java generics
 	// if you decide to do so in your implementation.
 	@SuppressWarnings("unchecked")
-
+	
+	static int stop = 0;
 
 	public MyAI(int rowDimension, int colDimension, int totalMines, int startX, int startY) {
 		// ################### Implement Constructor (required) ####################	
+		this.rowDimension = rowDimension;
+		this.colDimension = colDimension;
+		this.totalMines = totalMines;
+		this.startX = startX;
+		this.startY = startY;
 	}
 	
 	// ################## Implement getAction(), (required) #####################
 	public Action getAction(int number) {
-
-		return new Action(ACTION.LEAVE);
+		
+		
+		if(number==-1 || stop==1)
+			return new Action(ACTION.LEAVE);
+		else
+		{
+			stop++;
+			return new Action(ACTION.UNCOVER);
+		}
+		//return new Action(ACTION.LEAVE);
 	}
 
 	// ################### Helper Functions Go Here (optional) ##################
